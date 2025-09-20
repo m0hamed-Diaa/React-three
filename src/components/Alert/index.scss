@@ -1,0 +1,75 @@
+// ** Default
+$defaultBg: rgb(29 31 32 / 71%);
+$defaultColor: #c8c8c8;
+$defaultBorder: #c8c8c8;
+
+// ** Info
+$infoBg: #5a64ea6c;
+$infoColor: #646cff;
+$infoBorder: rgb(61, 70, 247);
+
+// ** Warning
+$warningBg: rgb(255 197 23 / 5%);
+$warningColor: #fcd253;
+$warningBorder: rgba(255, 213, 0, 0.793);
+
+// ** Error
+$errorBorder: rgba(255, 25, 0, 0.322);
+$errorBg: rgb(192 29 29 / 15%);
+$errorColor: #ef8d8dfa;
+
+// ** Success
+$successBg: rgb(246, 238, 9, 0.127);
+$successColor: #7acf58d6;
+$successBorder: rgba(0, 255, 0, 0.322);
+
+@mixin alert($name, $borderColor, $bgColor, $Color) {
+    .#{$name} {
+        border: 2px dotted $borderColor;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: $bgColor;
+        color: $Color;
+        margin-bottom: 1rem;
+        & .alert_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & .left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            & .right {
+                cursor: pointer;
+                margin-right: 10px;
+                transition: all .3s linear;
+                width: 18px;
+                &:hover {
+                    color: $errorColor;
+                }
+            }
+        }
+        p {
+            font-size: .9rem;
+            font-weight: bold;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        a {
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: underline;
+            color: white;
+            transition: all .3s linear;
+            &:hover {
+                color: #646cff
+            }
+        }
+    }
+}
+@include alert("alert-default", $defaultBorder, $defaultBg, $defaultColor);
+@include alert("alert-info", $infoBorder, $infoBg, $infoColor);
+@include alert("alert-warning", $warningBorder, $warningBg, $warningColor);
+@include alert("alert-error", $errorBorder, $errorBg, $errorColor);
+@include alert("alert-success", $successBorder, $successBg, $successColor);
